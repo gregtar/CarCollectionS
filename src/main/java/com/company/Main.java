@@ -1,3 +1,4 @@
+
 package com.company;
 
 import com.company.Customer.Customer;
@@ -5,21 +6,27 @@ import com.company.Exceptions.*;
 import com.company.Vehicle.Color;
 import com.company.Vehicle.Vehicle;
 import com.company.Writers.JsonWriter;
-import org.joda.time.LocalDate;
 import com.company.Workshop;
 
+import org.joda.time.LocalDate;
 
+/**
+ * Created by GregTar on 26.03.2017.
+ */
 public class Main {
     public static void main(String[] args) throws IllegalVehicleException, VehicleAlreadyAssignedException {
         Workshop workshop = createWorkshop();
 
         System.out.println(workshop);
-        System.out.print("Hello");
 
         removeMercedesFromPetrov(workshop);
 
         System.out.println(workshop);
-        JsonWriter.writeCustomerToFile(createCustomerPetrov() , "D:\\customerSergeev.json");
+        //JsonWriter.writeCustomerToFile(createCustomerPetrov() , "E:\\customerSergeev.json");
+
+
+
+
     }
 
     private static void removeMercedesFromPetrov(Workshop workshop) {
@@ -66,6 +73,8 @@ public class Main {
 
         Customer customerPetrov = createCustomerPetrov();
 
+        Customer customerRymar = createCustomerRymar();
+
         try {
             workshop.addCustomer(customerPetrov);
             workshop.addCustomer(customerSergeev);
@@ -77,9 +86,8 @@ public class Main {
 
         return workshop;
     }
-
     private static Customer createCustomerPetrov() {
-        Customer customerPetrov = new Customer("Mark", "Petrov", "+38025678930", LocalDate.parse("1982-01-11"));
+        Customer customerPetrov = new Customer("Mark", "Petrov", "+38025678930", "20.0.1991");
         Vehicle vehiclePetrovAudi = new Vehicle("A102AP199", "Audi", "A6", (Color.BLUE));
         Vehicle vehiclePetrovMercedes = new Vehicle("X199CB99", "Mercedes", "SLR", (Color.GREY));
         Vehicle vehiclePetrovKia = new Vehicle("H011AA199", "Kia", "Cerato", (Color.WHITE));
@@ -99,17 +107,17 @@ public class Main {
     }
 
     private static Customer createCustomerSergeev() {
-        Customer customerSergeev = new Customer("Ivan", "Sergeev", "+38095234567", LocalDate.parse("1991-03-10"));
+        Customer customerSergeev = new Customer("Ivan", "Sergeev", "+38095234567", new LocalDate("1991-03-10"));
         Vehicle vehicleSergeevRenault = new Vehicle("H174AK199", "Renault", "Logan", (Color.RED));
         Vehicle vehicleSergeevMercedes = new Vehicle("B099CC199", "Mercedes", "C200", (Color.BLACK));
 
         try {
-         customerSergeev.addVehicle(vehicleSergeevMercedes);
-         customerSergeev.addVehicle(vehicleSergeevRenault);
+            customerSergeev.addVehicle(vehicleSergeevMercedes);
+            customerSergeev.addVehicle(vehicleSergeevRenault);
         } catch (VehicleAlreadyAssignedException e) {e.printStackTrace();
         } catch (IllegalVehicleException e) {
-     e.printStackTrace();
-     }
+            e.printStackTrace();
+        }
         return customerSergeev;
     }
 

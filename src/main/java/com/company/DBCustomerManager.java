@@ -15,13 +15,13 @@ import org.joda.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBManager {
+public class DBCustomerManager {
     private String jdbcURL;
     private String jdbcUsername;
     private String jdbcPassword;
     private Connection jdbcConnection;
 
-    public DBManager(String jdbcURL, String jdbcUsername, String jdbcPassword) {
+    public DBCustomerManager(String jdbcURL, String jdbcUsername, String jdbcPassword) {
         this.jdbcURL = jdbcURL;
         this.jdbcUsername = jdbcUsername;
         this.jdbcPassword = jdbcPassword;
@@ -30,7 +30,7 @@ public class DBManager {
     private void connect() throws SQLException {
         if (jdbcConnection == null || jdbcConnection.isClosed()) {
             try {
-                Class.forName("org.postgresql.Driverr");
+                Class.forName("org.postgresql.Driver");
             } catch (ClassNotFoundException e) {
                 throw new SQLException(e);
             }
@@ -52,7 +52,7 @@ public class DBManager {
         statement.setString(1, customer.getId());
         statement.setString(2, customer.getName());
         statement.setString(3, customer.getSurname());
-        statement.setDate(4, Date.valueOf(customer.getBirthDate().toString()));
+        statement.setString(4, (customer.getBirthDate()));
         statement.setString(5, customer.getPhone());
 
         boolean rowInserted = statement.executeUpdate() > 0;
@@ -64,7 +64,7 @@ public class DBManager {
     public List<Customer> listAllCustomers() throws SQLException {
         List<Customer> listCustomers = new ArrayList<>();
 
-        String sql = "SELECT * FROM Autoservice";
+        String sql = "SELECT * FROM postgres";
 
         connect();
 
@@ -75,7 +75,7 @@ public class DBManager {
             String id = resultSet.getString("id");
             String name = resultSet.getString("name");
             String surname = resultSet.getString("surname");
-            LocalDate birthDate = LocalDate.parse("birthDate");
+            String birthDate = resultSet.getString("birthDate");
             String phone = resultSet.getString("phone");
 
             Customer customer = new Customer(id, name, surname, phone, birthDate);
@@ -111,7 +111,7 @@ public class DBManager {
         statement.setString(2, customer.getName());
         statement.setString(3, customer.getSurname());
         statement.setString(4, customer.getPhone());
-        statement.setDate(5, Date.valueOf(customer.getBirthDate().toString()));
+        statement.setString(5, customer.getBirthDate());
 
 
         boolean rowUpdated = statement.executeUpdate() > 0;
@@ -137,7 +137,7 @@ public class DBManager {
             String name = resultSet.getString("name");
             String surname = resultSet.getString("surname");
             String phone = resultSet.getString("phone");
-            LocalDate birthDate = LocalDate.parse(resultSet.getString("birthDate"));
+            String birthDate = resultSet.getString("birthDate");
 
             customer = new Customer(id, name, surname, phone, birthDate);
         }

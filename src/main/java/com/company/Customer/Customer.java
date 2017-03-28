@@ -1,7 +1,7 @@
 package com.company.Customer;
 
 
-
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -17,23 +17,31 @@ import com.company.Exceptions.VehicleNotFoundException;
 
 
 
-public class Customer {
+public class Customer implements Serializable{
     private String id;
     private String name;
     private String surname;
     private String phone;
-    private LocalDate birthDate;
+    private String birthDate;
 
-    private HashMap<String, Vehicle> registeredVehicles;
+    private HashMap<String, Vehicle> registeredVehicles ;
 
-    public Customer(String id, String name, String surname, String phone, LocalDate birthDate) {
+    public Customer(String name, String surname, String phone, String birthDate) {
         this.id = UUID.randomUUID().toString();
-        this.name = this.name;
-        this.surname = this.surname;
-        this.phone = this.phone;
-        this.birthDate = this.birthDate;
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.birthDate = birthDate;
         this.registeredVehicles = new HashMap<>();
     }
+
+    public Customer(String id, String name, String surname, String phone, String birthDate) {
+        this(name,surname,phone,birthDate);
+        this.id = id;
+
+    }
+
+
 
 
 
@@ -53,7 +61,7 @@ public class Customer {
         return phone;
     }
 
-    public LocalDate getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
@@ -61,9 +69,9 @@ public class Customer {
         if (newVehicle == null)
             throw new IllegalVehicleException("Provided vehicle is invalid");
 
-  //     if (registeredVehicles.containsKey(newVehicle.getNumberPlate()))
-    //        throw new VehicleAlreadyAssignedException("Vehicle with number plate " + newVehicle.getNumberPlate() +
-    //                " is already assigned for " + name + " " + surname);
+      if (registeredVehicles.containsKey(newVehicle.getNumberPlate()))
+           throw new VehicleAlreadyAssignedException("Vehicle with number plate " + newVehicle.getNumberPlate() +
+                  " is already assigned for " + name + " " + surname);
 
         registeredVehicles.put(newVehicle.getNumberPlate(), newVehicle);
     }
@@ -123,7 +131,7 @@ public class Customer {
         this.surname = surname;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
