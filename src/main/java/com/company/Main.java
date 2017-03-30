@@ -3,10 +3,7 @@ package com.company;
 
 import com.company.Customer.Customer;
 import com.company.Exceptions.*;
-import com.company.Vehicle.Color;
 import com.company.Vehicle.Vehicle;
-import com.company.Writers.JsonWriter;
-import com.company.Workshop;
 
 import org.joda.time.LocalDate;
 
@@ -42,7 +39,7 @@ public class Main {
         Vehicle vehicle = null;
 
         try {
-            vehicle = customer.findVehicle("H174AK199"); // it will not be found
+            vehicle = customer.findVehicle("H124AK199"); // it will not be found
         } catch (VehicleNotFoundException e) {
             e.printStackTrace();
         } catch (InvalidNumberPlateException e) {
@@ -88,10 +85,10 @@ public class Main {
     }
     private static Customer createCustomerPetrov() {
         Customer customerPetrov = new Customer("Mark", "Petrov", "+38025678930", "20.0.1991");
-        Vehicle vehiclePetrovAudi = new Vehicle("A102AP199", "Audi", "A6", (Color.BLUE));
-        Vehicle vehiclePetrovMercedes = new Vehicle("X199CB99", "Mercedes", "SLR", (Color.GREY));
-        Vehicle vehiclePetrovKia = new Vehicle("H011AA199", "Kia", "Cerato", (Color.WHITE));
-        Vehicle vehiclePetrovFiat = new Vehicle("H299CX199", "Fiat", "Punto", (Color.BLACK));
+        Vehicle vehiclePetrovAudi = new Vehicle();
+        Vehicle vehiclePetrovMercedes = new Vehicle();
+        Vehicle vehiclePetrovKia = new Vehicle();
+        Vehicle vehiclePetrovFiat = new Vehicle();
 
         try {
             customerPetrov.addVehicle(vehiclePetrovAudi);
@@ -108,8 +105,8 @@ public class Main {
 
     private static Customer createCustomerSergeev() {
         Customer customerSergeev = new Customer("Ivan", "Sergeev", "+38095234567", new LocalDate("1991-03-10"));
-        Vehicle vehicleSergeevRenault = new Vehicle("H174AK199", "Renault", "Logan", (Color.RED));
-        Vehicle vehicleSergeevMercedes = new Vehicle("B099CC199", "Mercedes", "C200", (Color.BLACK));
+        Vehicle vehicleSergeevRenault = new Vehicle();
+        Vehicle vehicleSergeevMercedes = new Vehicle();
 
         try {
             customerSergeev.addVehicle(vehicleSergeevMercedes);
@@ -123,8 +120,8 @@ public class Main {
 
     private static Customer createCustomerRymar() {
         Customer customerRymar = new Customer("Bogdan", "Rymar", "+380951453661", LocalDate.parse("1996-12-20"));
-        Vehicle vehicleRymarMercedess = new Vehicle("CB 9080 BC", "Mercedess", "w210", (Color.BLUE));
-        Vehicle vehicleRymarRenault = new Vehicle("AC 8239 CD", "Renault", "Duster", (Color.GREY));
+        Vehicle vehicleRymarMercedess = new Vehicle();
+        Vehicle vehicleRymarRenault = new Vehicle();
 
         try {
             customerRymar.addVehicle(vehicleRymarMercedess);

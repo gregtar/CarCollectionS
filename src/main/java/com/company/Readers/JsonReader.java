@@ -15,16 +15,21 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 
-public class JsonReader {
+public class JsonReader implements Reader{
     public static Customer readCustomerFromFile(String filename){
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         try {  FileReader fileReader = new FileReader(filename);
-            Customer customer = gson.fromJson(fileReader, Customer.class);
-            return customer;
+            Customer Customer = gson.fromJson(fileReader, Customer.class);
+            return  Customer;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         return null;
 
+    }
+
+    @Override
+    public void readFromFile(String filename) {
+        return;
     }
 }

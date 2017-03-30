@@ -98,7 +98,7 @@ public class Customer implements Serializable{
     public String toString() {
         StringBuilder builder = new StringBuilder();
 
-        builder.append("--- User info ---\n");
+        builder.append("--- Customer info ---\n");
         builder.append(primaryFieldsToString());
 
         for (Map.Entry<String, Vehicle> vehicleEntry : registeredVehicles.entrySet()) {

@@ -10,7 +10,7 @@ import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
 
-public class XmlReader {
+public class XmlReader implements  Reader{
     public static Customer readCustomerFromFile(String filename) {
 
         try {
@@ -27,6 +27,11 @@ public class XmlReader {
         }
 
         return null;
+    }
+
+    @Override
+    public void readFromFile(String filename) {
+
     }
 }
 

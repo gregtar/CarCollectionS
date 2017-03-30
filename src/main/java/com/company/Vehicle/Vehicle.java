@@ -1,4 +1,6 @@
 package com.company.Vehicle;
+        import com.sun.org.apache.xalan.internal.xsltc.dom.MultiValuedNodeHeapIterator;
+
         import java.util.UUID;
 
 public  class Vehicle {
@@ -7,6 +9,9 @@ public  class Vehicle {
     private String mark;
     private String model;
     private Color color;
+
+    public Vehicle(String vehMark, String vehModel, String vehNumber, Color vehColor) {
+    }
 
     public String getId() {
         return id;
@@ -28,7 +33,7 @@ public  class Vehicle {
         return color;
     }
 
-    public Vehicle(String numberPlate, String mark, String model, Color color) {
+    public Vehicle() {
         this.id = UUID.randomUUID().toString();
         this.numberPlate = numberPlate;
         this.mark = mark;
@@ -44,4 +49,7 @@ public  class Vehicle {
                 "   model       = '" + model + "'\n" +
                 "   color       = '" + color + "'\n";
     }
+
+
 }
+

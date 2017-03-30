@@ -1,4 +1,4 @@
-package com.company;
+package com.company.DBService;
 
 /**
  * Created by gregtar on 25.03.17.

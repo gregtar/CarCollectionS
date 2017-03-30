@@ -13,7 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 
-public class JsonWriter {
+public class JsonWriter implements Writer{
     public static void writeCustomerToFile(Customer customer, String fileName) throws VehicleAlreadyAssignedException, IllegalVehicleException {
         Gson gson = new Gson();
 
